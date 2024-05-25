@@ -25,7 +25,7 @@ const PendingTask = ({ data, setIsActiveEditTask }) => {
       return { date: formattedDate, time: formattedTime };
     } 
     catch (error) {
-      console.error('Error parsing date:', error);
+      // console.error('Error parsing date:', error);
       return null;
     }
   }     

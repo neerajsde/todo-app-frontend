@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordFill } from "react-icons/ri";
@@ -22,6 +22,10 @@ const Login = () => {
       [name]: value
     }));
   }
+
+  useEffect(() => {
+    document.title = 'Todo - Login'
+  },[]);
 
   return (
     <div className='w-full max-w-[500px] flex flex-col items-center justify-center bg-slate-800 border border-slate-200 rounded-md gap-4 p-8'>
@@ -73,7 +77,10 @@ const Login = () => {
           (<div className='text-sm text-red-500 pl-2'>{error}</div>)
       }
 
-      <p className='text-lg font-normal text-white hover:underline cursor-pointer'>Forgot Password?</p>
+      <p 
+        className='text-lg font-normal text-white hover:underline cursor-pointer'
+        onClick={() => navigate('/forgot-password')}
+      >Forgot Password?</p>
 
       <button
         className='w-[90%] flex items-center justify-center gap-2 py-1 border-2 rounded-md text-white text-xl font-semibold transition duration-300 ease-in hover:bg-slate-400 hover:text-slate-800'

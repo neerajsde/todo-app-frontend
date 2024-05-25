@@ -15,6 +15,7 @@ function AppContextProvider({ children }) {
   const [editTask, setEditTask] = useState('');
   const [isActiveEditTask, setIsActiveEditTask] = useState(false);
   const [taskId, setTaskId] = useState('');
+  const [emailSend, setEmailSend] = useState({ email: '' });
 
   const isDataFilled = (data) => {
     return data.email.trim() !== '' && data.password.trim() !== '';
@@ -30,7 +31,7 @@ function AppContextProvider({ children }) {
       setIsLoading(true);
   
       const fetchUser = async (url) => {
-        console.log("Sending user data:", userdata);
+        // console.log("Sending user data:", userdata);
         const response = await fetch(url, {
           method: 'POST',
           headers: {
@@ -49,7 +50,7 @@ function AppContextProvider({ children }) {
         response = await fetchUser(userEndpoint);
         if (!response.ok) throw new Error('User registration failed');
       } catch (registrationError) {
-        console.log('User registration failed, attempting login:', registrationError.message);
+        // toast.error('User registration failed, attempting login:', registrationError.message);
         response = await fetchUser(loginEndpoint);
       }
   
@@ -62,7 +63,7 @@ function AppContextProvider({ children }) {
           const errorText = await response.text();
           errorMessage = errorText || errorMessage;
         }
-        console.log("Login error:", errorMessage);
+        // console.log("Login error:", errorMessage);
         toast.error(errorMessage);
   
         if (errorMessage === 'user not found.' || errorMessage === 'invalid email id') {
@@ -74,15 +75,18 @@ function AppContextProvider({ children }) {
         }
       } else {
         const data = await response.json();
-        console.log('User Logged In Successfully:', data);
+        // console.log('User Logged In Successfully:', data);
         setData(data);
         setIsLogedIn(true);
+        setEmailError('');
+        setPassError('');
+        setError('');
         navigate('/');
         toast.success("Logged in successfully");
       }
   
     } catch (err) {
-      console.log('Error in login:', err.message);
+      // console.log('Error in login:', err.message);
       toast.error(err.message);
     } finally {
       setIsLoading(false);
@@ -97,7 +101,7 @@ function AppContextProvider({ children }) {
     try{
       setIsLoading(true);
         const url = `https://todo-app-backend-l21h.onrender.com/api/v1/create/user`;
-        console.log("Sending user data:", userData);
+        // console.log("Sending user data:", userData);
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -115,12 +119,12 @@ function AppContextProvider({ children }) {
             const errorText = await response.text();
             errorMessage = errorText || errorMessage;
             }
-            console.log("Login error:", errorMessage);
+            // console.log("Login error:", errorMessage);
             toast.error(errorMessage);
         }
         else{
           const data = await response.json();
-          console.log('User Signed up Successfully:', data);
+          // console.log('User Signed up Successfully:', data);
           setData(data);
           setIsLogedIn(true);
           navigate('/');
@@ -130,7 +134,7 @@ function AppContextProvider({ children }) {
     }
     catch(err){
       setIsLoading(false);
-      console.log('Error in Sign Up:', err.message);
+      // console.log('Error in Sign Up:', err.message);
       toast.error(err.message);
     }
   }
@@ -155,18 +159,18 @@ function AppContextProvider({ children }) {
         const errorText = await response.text();
         errorMessage = errorText || errorMessage;
         }
-        console.log("Delete Task error:", errorMessage);
+        // console.log("Delete Task error:", errorMessage);
         toast.error(errorMessage);
       }
       else{
         const data = await response.json();
-        console.log('Task Deleted Successfully:', data);
+        // console.log('Task Deleted Successfully:', data);
         setData(data);
         toast.success("Task Deleted successfully");
       }
     }
     catch(err){
-      console.log('Error in Delete Task:', err.message);
+      // console.log('Error in Delete Task:', err.message);
       toast.error(err.message);
     }
   }
@@ -192,7 +196,9 @@ function AppContextProvider({ children }) {
     isActiveEditTask, 
     setIsActiveEditTask,
     taskId, 
-    setTaskId
+    setTaskId,
+    emailSend, 
+    setEmailSend
   };
 
   return (

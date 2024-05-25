@@ -16,6 +16,11 @@ const Dashboard = () => {
     task:""
   });
 
+
+  useEffect(() => {
+    document.title = 'Todo - Dashboard'
+  },[]);
+
   useEffect(() => {
     if(data){
       setNewTask(prevData => ({
@@ -58,7 +63,7 @@ const Dashboard = () => {
       }
 
       const res_data = await response.json();
-      console.log(res_data);
+      // console.log(res_data);
       setData(prevData => ({
         ...prevData,
         user: {

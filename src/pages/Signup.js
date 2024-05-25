@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { MdEmail, MdDateRange } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
@@ -25,6 +25,10 @@ const Signup = () => {
         [name]: value
       }));
     }
+
+    useEffect(() => {
+      document.title = 'Todo - Register'
+    },[]);
   
     return (
       <div className='w-full max-w-[500px] flex flex-col items-center justify-center bg-slate-800 border border-slate-200 rounded-md gap-4 p-8'>

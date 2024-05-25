@@ -12,7 +12,7 @@ const EditTask = () => {
         task:editTask
     });
 
-    console.log(inputData);
+    // console.log(inputData);
     function inputHandler(event){
         setInputData(prevData => ({
             ...prevData,
@@ -24,7 +24,7 @@ const EditTask = () => {
         try{
             setIsLoading(true);
             const url = 'https://todo-app-backend-l21h.onrender.com/api/v1/editTask';
-            console.log('Sending Data: ', inputData);
+            // console.log('Sending Data: ', inputData);
             const response = await fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -42,24 +42,24 @@ const EditTask = () => {
                 const errorText = await response.text();
                 errorMessage = errorText || errorMessage;
                 }
-                console.log("Update Task error:", errorMessage);
+                // console.log("Update Task error:", errorMessage);
                 toast.error(errorMessage);
             }
             else{
                 const data = await response.json();
                 setData(data);
-                console.log('Updated Task: ', data.updateTask);
+                // console.log('Updated Task: ', data.updateTask);
                 toast.success('Task updated sucessfully');
             }
             setIsLoading(false);
         }
         catch(err){
             toast.error(err.message);
-            console.log(err.message);
+            // console.log(err.message);
         }
     }
   return (
-    <div className='w-full h-full absolute top-0 left-0 bg-opacity-25 bg-gray-400 backdrop-blur flex justify-center items-start py-8'>
+    <div className='w-full h-full min-h-[82vh] absolute top-0 left-0 bg-opacity-25 bg-gray-300 backdrop-blur flex justify-center items-start py-8'>
         <div className='max-w-[500px] w-full flex flex-col justify-center items-center border-2 border-slate-800 rounded-md gap-4 p-4 bg-slate-400'>
             <div className='w-full flex justify-between items-center'>
                 <h2 className='text-xl font-bold text-slate-800'>Edit Task</h2>

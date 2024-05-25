@@ -7,6 +7,8 @@ import { FaUser, FaUserCheck } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { AppContext } from './context/AppContext';
 import Signup from './pages/Signup';
+import ForgotPass from './pages/ForgotPass';
+import ChangePass from './pages/ChangePass';
 
 function App() {
   const { isLogedIn, data, setData, setIsLogedIn } = useContext(AppContext);
@@ -62,6 +64,8 @@ function App() {
         <Route path="/" element={<Dashboard/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path='/signup' element={<Signup/>} />
+        <Route path='/forgot-password' element={<ForgotPass/>}/>
+        <Route path='/change-password' element={<ChangePass/>}/>
       </Routes>
     </div>
   );
