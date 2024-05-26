@@ -3,7 +3,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import Spinner from '../components/Spinner';
 import { AppContext } from '../context/AppContext';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { UNSAFE_FetchersContext, useNavigate } from 'react-router-dom';
 
 const ForgotPass = () => {
   const navigate = useNavigate();
@@ -29,6 +29,10 @@ const ForgotPass = () => {
     num5: useRef(null),
     num6: useRef(null),
   };
+
+  useEffect(() => {
+    setEmailFindError('');
+  }, [emailSend]);
 
   function emailHandler(event) {
     setEmailSend({ email: event.target.value });

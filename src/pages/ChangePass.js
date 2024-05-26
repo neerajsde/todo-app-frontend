@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { PiPasswordFill } from "react-icons/pi";
@@ -60,6 +60,10 @@ const ChangePass = () => {
       toast.error(err.message);
     }
   }
+
+  useEffect(() => {
+    document.title = 'Change Password'
+  }, [])
 
   return (
     <div className='w-full max-w-[500px] flex flex-col items-center justify-center bg-slate-800 border border-slate-200 rounded-md gap-4 p-8'>

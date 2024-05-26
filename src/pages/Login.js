@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { userlogin, isLoading, emailError, passError, error } = useContext(AppContext);
+  const { userlogin, isLoading, emailError,setEmailError, passError,setPassError, error, setError } = useContext(AppContext);
   const [isVisiable, setIsVisiable] = useState(false);
   const [userdata, setUserData] = useState({
     email: "",
@@ -22,6 +22,12 @@ const Login = () => {
       [name]: value
     }));
   }
+
+  useEffect(() => {
+    setEmailError('');
+    setPassError('');
+    setError('');
+  }, [userdata]);
 
   useEffect(() => {
     document.title = 'Todo - Login'
